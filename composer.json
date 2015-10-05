@@ -1,9 +1,13 @@
 {
-    "name": "wn/lumen-generators",
+    "name": "nhahv/lumen-generators",
     "description": "A collection of generators for Lumen and Laravel 5.",
 	"keywords": ["lumen", "laravel", "rest", "api", "generators"],
     "license": "MIT",
     "authors": [
+        {
+            "name": "Nha.HV",
+            "email": "nhahv@tintuc.vn"
+        },
         {
             "name": "Amine Ben hammou",
             "email": "webneat@gmail.com"
