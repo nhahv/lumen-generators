@@ -3,21 +3,21 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class {{name}}Migration extends Migration
+class {{name}} extends Migration
 {
-    
+    const TABLE_NAME = '{{table}}';
     public function up()
     {
-        Schema::create('{{table}}', function(Blueprint $table) {
-            $table->increments('id');
+        Schema::create(self::TABLE_NAME, function(Blueprint $t) {
+            $t->increments('id');
 {{schema}}
 {{constraints}}
-            $table->timestamps();
+            $t->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::drop('{{table}}');
+        Schema::drop(self::TABLE_NAME);
     }
 }

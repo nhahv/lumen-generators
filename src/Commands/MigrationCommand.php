@@ -4,10 +4,10 @@
 class MigrationCommand extends BaseCommand {
 
 	protected $signature = 'wn:migration
-        {table : The table name.}
+        {className : The table name.}
         {--schema= : the schema.}
         {--keys= : foreign keys.}
-        {--file= : name of the migration file.}
+        {--table= : name of the migration file.}
         {--parsed : tells the command that arguments have been already parsed. To use when calling the command from an other command and passing the parsed arguments and options}
         ';
         // {action : One of create, add, remove or drop options.}
@@ -17,8 +17,12 @@ class MigrationCommand extends BaseCommand {
 
     public function handle()
     {
-        $table = $this->argument('table');
-        $name = 'Create' . ucwords(camel_case($table));
+        $className = $this->argument('className');
+        $name = ucwords(camel_case($className));
+
+        $table = $this->option('table')?$this->option('table'):'TableName';
+
+        $file = date('Y_m_d_His_') . snake_case($name);
 
         $content = $this->getTemplate('migration')
             ->with([
@@ -29,14 +33,9 @@ class MigrationCommand extends BaseCommand {
             ])
             ->get();
 
-        $file = $this->option('file');
-        if(! $file){
-            $file = date('Y_m_d_His_') . snake_case($name);
-        }
-
         $this->save($content, "./database/migrations/{$file}.php");
 
-        $this->info("{$table} migration generated !");
+        $this->info("{$name} migration generated !");
     }
 
     protected function getSchema()

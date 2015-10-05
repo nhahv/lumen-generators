@@ -20,7 +20,7 @@
     },
     "autoload": {
     	"psr-4": {
-    		"Wn\\Generators\\": "src/"
+    		"NhaHV\\Lumen\\Generators\\": "src/"
     	}
     }
 }
